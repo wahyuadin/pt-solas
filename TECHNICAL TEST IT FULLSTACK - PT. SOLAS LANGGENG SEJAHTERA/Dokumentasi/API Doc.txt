@@ -1,0 +1,5 @@
+Link Swaggerhub
+https://app.swaggerhub.com/apis/MOHAMMADWAHYUADINUGR/pt-solas/1.0.0
+
+Postman
+https://www.postman.com/cryosat-administrator-40707648/pt-solas/collection/ju7udfr/api-it-test-pt-solas?action=share&creator=19930446

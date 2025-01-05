@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "360ae82e-3fe8-4b0b-94ae-17fc25245e82",
+		"name": "API IT TEST PT SOLAS",
+		"description": "Mohammad Wahyu Adi Nugroho - IT Support\n\nUSER  \n\\============\n\nUsername : user\n\nPassword : user123",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19930446",
+		"_collection_link": "https://www.postman.com/cryosat-administrator-40707648/workspace/pt-solas/collection/19930446-360ae82e-3fe8-4b0b-94ae-17fc25245e82?action=share&source=collection_link&creator=19930446"
+	},
+	"item": [
+		{
+			"name": "01. Authentifikasi",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json(),\r",
+									"token = data.massage.token;\r",
+									"pm.globals.set(\"token\", token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"wahyu\",\r\n    \"email\":\"wahyu@gmail.com\",\r\n    \"username\":\"wahyu\",\r\n    \"password\":\"wahyuadin\",\r\n    \"password_confirmation\":\"wahyuadin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02. Kategori",
+			"item": [
+				{
+					"name": "Kategori - Get All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/kategories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"kategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kategori -Get By id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/kategories/9de3d9a2-2ef9-4a41-9477-8b18f403ac88",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"kategories",
+								"9de3d9a2-2ef9-4a41-9477-8b18f403ac88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kategori - Post Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"Wahyu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/kategories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"kategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kategori - Edit Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"mikel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/kategories/9de3d9a2-2ef9-4a41-9477-8b18f403ac88",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"kategories",
+								"9de3d9a2-2ef9-4a41-9477-8b18f403ac88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Kategori = Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\":\"mikel\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/kategories/9de3d9a2-2ef9-4a41-9477-8b18f403ac88",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"kategories",
+								"9de3d9a2-2ef9-4a41-9477-8b18f403ac88"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03. Buku",
+			"item": [
+				{
+					"name": "Buku - Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/buku",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/buku",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "kategori_id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "judul",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "penulis",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "penerbit",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "thn_terbit",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "isbn",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": "postman-cloud:///1eed9859-4319-4820-9121-dfc36e1ed323"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/buku",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buku"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "kategori_id",
+									"value": "9de44451-60cd-4632-b93b-62370f22cb83",
+									"type": "text"
+								},
+								{
+									"key": "judul",
+									"value": "Dongeng Sebelum Tidur",
+									"type": "text"
+								},
+								{
+									"key": "penulis",
+									"value": "Wahyuadin",
+									"type": "text"
+								},
+								{
+									"key": "penerbit",
+									"value": "Netsian Komputer",
+									"type": "text"
+								},
+								{
+									"key": "thn_terbit",
+									"value": "2022",
+									"type": "text"
+								},
+								{
+									"key": "isbn",
+									"value": "77636734",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": "postman-cloud:///1eed9859-4319-4820-9121-dfc36e1ed323"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/buku/9de445d8-0c8b-4e22-9453-3b57787aec45",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buku",
+								"9de445d8-0c8b-4e22-9453-3b57787aec45"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/buku/9de445d8-0c8b-4e22-9453-3b57787aec45",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"buku",
+								"9de445d8-0c8b-4e22-9453-3b57787aec45"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
